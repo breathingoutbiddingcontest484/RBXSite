@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RBX Exploit — Executor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="stars-bg" id="stars"></div>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="header-logo">
+    <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+      <img src="assets/logo.png" alt="RBX" class="logo-img"
+           onerror="this.style.display='none';document.getElementById('lf').style.display='flex'"/>
+      <div id="lf" style="display:none;width:36px;height:36px;background:linear-gradient(135deg,#7b00ff,#c400ff);border-radius:8px;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-weight:900;color:#fff;font-size:16px;filter:drop-shadow(0 0 8px #c400ff)">R</div>
+      <span style="font-family:'Orbitron',monospace;font-size:13px;font-weight:900;color:#c400ff;letter-spacing:2px;text-shadow:0 0 10px #c400ff88">RBX</span>
+    </a>
+  </div>
+
+  <nav class="nav-center" id="mainNav">
+    <a href="#" class="active" onclick="showSection('lobby');return false">Lobby</a>
+    <a href="#" onclick="showSection('features');return false">Features</a>
+    <a href="#" onclick="showSection('scripts');return false">Scripts</a>
+    <a href="#" onclick="showSection('changelog');return false">Changelog</a>
+  </nav>
+
+  <div class="header-right">
+    <a href="https://discord.gg/Zmb66jX3tZ" target="_blank" class="discord-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 127.14 96.36" fill="currentColor">
+        <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+      </svg>
+      Discord
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ LOBBY ============ -->
+  <section id="section-lobby">
+    <div class="hero">
+      <div class="status-pill" id="statusPill">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusText">Verificando...</span>
+      </div>
+      <div class="hero-eyebrow">// ROBLOX EXECUTOR</div>
+      <h1>Bem-vindo ao <span>RBX Exploit</span></h1>
+      <p class="hero-sub">O executor mais rápido e estável para Roblox. Suporte a UNC, Scripts Hub integrado e atualizações automáticas.</p>
+      <div class="hero-btns">
+        <a href="checkpoint1.html" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Get Key Grátis
+        </a>
+        <a href="https://discord.gg/Zmb66jX3tZ" target="_blank" class="btn btn-purchase">
+          <svg width="16" height="16" viewBox="0 0 127.14 96.36" fill="currentColor"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>
+          Purchase Premium
+        </a>
+        <a href="https://loot-link.com/s?yCGZIXXx" target="_blank" class="btn btn-outline">Download</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section id="section-features" style="display:none">
+    <div class="section">
+      <div class="section-title">Features</div>
+      <div class="section-sub">// O que o RBX Exploit oferece</div>
+
+      <div class="features-grid">
+        <div class="glass-card feature-card">
+          <span class="feature-icon">⚡</span>
+          <div class="feature-title">INJEÇÃO RÁPIDA</div>
+          <div class="feature-desc">Injeção em menos de 2 segundos. Compatível com as últimas versões do Roblox.</div>
+        </div>
+        <div class="glass-card feature-card">
+          <span class="feature-icon">🔒</span>
+          <div class="feature-title">ANTI-BAN</div>
+          <div class="feature-desc">Sistema de proteção avançado que reduz o risco de ban na sua conta Roblox.</div>
+        </div>
+        <div class="glass-card feature-card">
+          <span class="feature-icon">📦</span>
+          <div class="feature-title">UNC SUPPORT</div>
+          <div class="feature-desc">Suporte completo ao Universal Naming Convention para scripts avançados.</div>
+        </div>
+        <div class="glass-card feature-card">
+          <span class="feature-icon">🔄</span>
+          <div class="feature-title">AUTO-UPDATE</div>
+          <div class="feature-desc">Atualizações automáticas. Nunca fique desatualizado após um update do Roblox.</div>
+        </div>
+        <div class="glass-card feature-card">
+          <span class="feature-icon">📜</span>
+          <div class="feature-title">SCRIPT HUB</div>
+          <div class="feature-desc">Hub de scripts integrado com centenas de scripts prontos para usar.</div>
+        </div>
+        <div class="glass-card feature-card">
+          <span class="feature-icon">🎨</span>
+          <div class="feature-title">UI MODERNA</div>
+          <div class="feature-desc">Interface limpa, dark e personalizável. Tema neon exclusivo do RBX.</div>
+        </div>
+        <div class="glass-card feature-card">
+          <span class="feature-icon">💬</span>
+          <div class="feature-title">SUPORTE 24/7</div>
+          <div class="feature-desc">Time de suporte ativo no Discord. Dúvidas resolvidas rapidamente.</div>
+        </div>
+        <div class="glass-card feature-card">
+          <span class="feature-icon">🔑</span>
+          <div class="feature-title">KEY GRATUITA</div>
+          <div class="feature-desc">Key grátis disponível para todos. Premium com benefícios exclusivos.</div>
+        </div>
+      </div>
+
+      <!-- Status do sistema -->
+      <div style="margin-top: 60px">
+        <div class="section-title" style="font-size:1.1rem">Status do Sistema</div>
+        <div class="section-sub">// Monitoramento em tempo real</div>
+        <div class="status-grid">
+          <div class="glass-card status-card">
+            <div class="status-label">Executor</div>
+            <div class="status-value green" id="feat-exec-status">ONLINE</div>
+          </div>
+          <div class="glass-card status-card">
+            <div class="status-label">Key System</div>
+            <div class="status-value green" id="feat-key-status">ONLINE</div>
+          </div>
+          <div class="glass-card status-card">
+            <div class="status-label">Discord</div>
+            <div class="status-value green">ONLINE</div>
+          </div>
+          <div class="glass-card status-card">
+            <div class="status-label">Última Atualização</div>
+            <div class="status-value" style="font-size:1rem;color:var(--text)" id="feat-last-update">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCRIPTS HUB ============ -->
+  <section id="section-scripts" style="display:none">
+    <div class="section">
+      <div class="section-title">Script Hub</div>
+      <div class="section-sub">// Scripts da comunidade via ScriptBlox API</div>
+
+      <div class="scripts-filters" id="scriptsFilters">
+        <button class="filter-btn active" onclick="filterScripts('',this)">Todos</button>
+        <button class="filter-btn" onclick="filterScripts('Blox Fruits',this)">Blox Fruits</button>
+        <button class="filter-btn" onclick="filterScripts('Pet Simulator',this)">Pet Simulator</button>
+        <button class="filter-btn" onclick="filterScripts('Arsenal',this)">Arsenal</button>
+        <button class="filter-btn" onclick="filterScripts('Murder Mystery',this)">Murder Mystery</button>
+        <button class="filter-btn" onclick="filterScripts('Da Hood',this)">Da Hood</button>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-bottom:24px">
+        <input type="text" id="scriptSearch" placeholder="Buscar script ou jogo..."
+          style="flex:1;background:rgba(196,0,255,0.04);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:10px 16px;font-family:var(--font-body);font-size:14px;outline:none;transition:border-color 0.2s"
+          onfocus="this.style.borderColor='var(--border-bright)'" onblur="this.style.borderColor='var(--border)'"
+          oninput="searchScripts(this.value)" />
+      </div>
+
+      <div class="scripts-grid" id="scriptsGrid">
+        <div class="scripts-loading">
+          <div class="spinner"></div>
+          Carregando scripts...
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:24px">
+        <button class="btn btn-outline" id="loadMoreBtn" onclick="loadMoreScripts()" style="display:none">Carregar mais</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHANGELOG ============ -->
+  <section id="section-changelog" style="display:none">
+    <div class="section" style="max-width:760px">
+      <div class="section-title">Changelog</div>
+      <div class="section-sub">// Histórico de atualizações do RBX Exploit</div>
+
+      <div class="changelog-list">
+        <div class="glass-card changelog-item">
+          <div class="changelog-version">v2.4.1</div>
+          <div class="changelog-content">
+            <div class="changelog-date">03 MAI 2025</div>
+            <div class="changelog-title">HOTFIX — ESTABILIDADE</div>
+            <ul class="changelog-changes">
+              <li>Correção de crash ao injetar em certos jogos <span class="changelog-tag tag-fix">FIX</span></li>
+              <li>Melhoria no tempo de resposta do sistema de keys <span class="changelog-tag tag-fix">FIX</span></li>
+              <li>Atualização de compatibilidade com Roblox v655 <span class="changelog-tag tag-update">UPDATE</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="glass-card changelog-item">
+          <div class="changelog-version">v2.4.0</div>
+          <div class="changelog-content">
+            <div class="changelog-date">28 ABR 2025</div>
+            <div class="changelog-title">SCRIPT HUB + NOVA UI</div>
+            <ul class="changelog-changes">
+              <li>Script Hub integrado com ScriptBlox <span class="changelog-tag tag-new">NEW</span></li>
+              <li>Nova interface com tema neon redesenhado <span class="changelog-tag tag-new">NEW</span></li>
+              <li>Sistema de notificações para admin <span class="changelog-tag tag-new">NEW</span></li>
+              <li>Performance de injeção melhorada em 40% <span class="changelog-tag tag-update">UPDATE</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="glass-card changelog-item">
+          <div class="changelog-version">v2.3.5</div>
+          <div class="changelog-content">
+            <div class="changelog-date">15 ABR 2025</div>
+            <div class="changelog-title">KEY SYSTEM V2</div>
+            <ul class="changelog-changes">
+              <li>Sistema de keys completamente reescrito <span class="changelog-tag tag-new">NEW</span></li>
+              <li>Keys premium com expiração configurável <span class="changelog-tag tag-new">NEW</span></li>
+              <li>HWID reset disponível para admins <span class="changelog-tag tag-new">NEW</span></li>
+              <li>Correção de bug de expiração prematura <span class="changelog-tag tag-fix">FIX</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="glass-card changelog-item">
+          <div class="changelog-version">v2.3.0</div>
+          <div class="changelog-content">
+            <div class="changelog-date">01 ABR 2025</div>
+            <div class="changelog-title">SUPORTE UNC</div>
+            <ul class="changelog-changes">
+              <li>Implementação completa do UNC <span class="changelog-tag tag-new">NEW</span></li>
+              <li>Suporte a scripts com require() <span class="changelog-tag tag-new">NEW</span></li>
+              <li>Atualização de compatibilidade Roblox <span class="changelog-tag tag-update">UPDATE</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ SCRIPT MODAL ============ -->
+<div class="modal-overlay" id="scriptModal" onclick="closeModal(event)">
+  <div class="glass-card modal">
+    <div class="modal-title" id="modalTitle">—</div>
+    <div class="modal-game" id="modalGame">—</div>
+    <div class="modal-script-box" id="modalScript">—</div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" onclick="copyModalScript()" style="padding:8px 20px;font-size:13px">Copiar Script</button>
+      <button class="modal-close" onclick="document.getElementById('scriptModal').classList.remove('open')">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+//  STARS
+// ============================================================
+(function() {
+  const c = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'star' + (Math.random() > 0.8 ? ' big' : '');
+    s.style.left  = Math.random() * 100 + 'vw';
+    s.style.top   = Math.random() * 100 + 'vh';
+    s.style.setProperty('--dur',   (3 + Math.random() * 6) + 's');
+    s.style.setProperty('--delay', (Math.random() * 8) + 's');
+    c.appendChild(s);
+  }
+})();
+
+// ============================================================
+//  NAV
+// ============================================================
+const SECTIONS = ['lobby','features','scripts','changelog'];
+
+function showSection(name) {
+  SECTIONS.forEach(s => {
+    const el = document.getElementById('section-' + s);
+    if (el) el.style.display = s === name ? 'block' : 'none';
+  });
+  document.querySelectorAll('#mainNav a').forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('onclick') && a.getAttribute('onclick').includes("'" + name + "'"))
+      a.classList.add('active');
+  });
+  if (name === 'scripts' && !scriptsLoaded) loadScripts();
+  if (name === 'features') checkStatus();
+  window.scrollTo(0, 0);
+}
+
+// ============================================================
+//  STATUS CHECK
+// ============================================================
+async function checkStatus() {
+  const pill     = document.getElementById('statusPill');
+  const dot      = document.getElementById('statusDot');
+  const txt      = document.getElementById('statusText');
+  const execSt   = document.getElementById('feat-exec-status');
+  const keySt    = document.getElementById('feat-key-status');
+  const lastUpd  = document.getElementById('feat-last-update');
+
+  try {
+    const r    = await fetch('https://rbxadminkey.netlify.app/api/validate?key=DEVK_REDUXSTUDIOS1%23', { signal: AbortSignal.timeout(5000) });
+    const data = await r.json();
+    const online = data && (data.valid !== undefined);
+
+    if (online) {
+      pill.classList.remove('offline');
+      dot.style.background = '#00ff88';
+      dot.style.boxShadow  = '0 0 8px #00ff88';
+      txt.textContent = 'Sistema Online';
+      if (execSt) { execSt.textContent = 'ONLINE'; execSt.className = 'status-value green'; }
+      if (keySt)  { keySt.textContent  = 'ONLINE'; keySt.className  = 'status-value green'; }
+    } else {
+      throw new Error('offline');
+    }
+  } catch {
+    pill.classList.add('offline');
+    dot.style.animation = 'none';
+    txt.textContent = 'Sistema Offline';
+    if (execSt) { execSt.textContent = 'OFFLINE'; execSt.className = 'status-value red'; }
+    if (keySt)  { keySt.textContent  = 'OFFLINE'; keySt.className  = 'status-value red'; }
+  }
+
+  if (lastUpd) lastUpd.textContent = new Date().toLocaleDateString('pt-BR');
+}
+
+checkStatus(); // check on load for hero pill
+
+// ============================================================
+//  SCRIPT HUB — ScriptBlox API
+// ============================================================
+let scriptsLoaded  = false;
+let allScripts     = [];
+let currentPage    = 1;
+let currentSearch  = '';
+let currentFilter  = '';
+const PAGE_SIZE    = 12;
+
+async function loadScripts(page = 1, search = '', append = false) {
+  const grid = document.getElementById('scriptsGrid');
+  const moreBtn = document.getElementById('loadMoreBtn');
+
+  if (!append) {
+    grid.innerHTML = '<div class="scripts-loading"><div class="spinner"></div>Carregando scripts...</div>';
+    moreBtn.style.display = 'none';
+  }
+
+  try {
+    const q    = search || currentFilter || 'roblox';
+    const url  = `https://scriptblox.com/api/script/search?q=${encodeURIComponent(q)}&page=${page}&max=${PAGE_SIZE}`;
+    const res  = await fetch(url, { signal: AbortSignal.timeout(8000) });
+    const data = await res.json();
+    const scripts = data?.result?.scripts || [];
+
+    if (!append) {
+      allScripts = scripts;
+      grid.innerHTML = '';
+    } else {
+      allScripts = [...allScripts, ...scripts];
+    }
+
+    if (allScripts.length === 0) {
+      grid.innerHTML = '<div class="scripts-loading">Nenhum script encontrado.</div>';
+      return;
+    }
+
+    if (!append) grid.innerHTML = '';
+    scripts.forEach(s => grid.appendChild(buildScriptCard(s)));
+
+    const total  = data?.result?.totalPages || 1;
+    moreBtn.style.display = page < total ? 'inline-flex' : 'none';
+    currentPage   = page;
+    scriptsLoaded = true;
+
+  } catch (e) {
+    if (!append) grid.innerHTML = '<div class="scripts-loading">❌ Erro ao carregar scripts.<br><small>Verifique sua conexão.</small></div>';
+  }
+}
+
+function buildScriptCard(s) {
+  const div = document.createElement('div');
+  div.className = 'glass-card script-card';
+
+  const img = s.image
+    ? `<img class="script-thumb" src="https://scriptblox.com${s.image}" alt="${s.title}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height%22100%22><rect fill=%22%23120020%22 width=%22100%22 height=%22100%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%23c400ff44%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2232%22>📜</text></svg>'"/>`
+    : `<div class="script-thumb" style="display:flex;align-items:center;justify-content:center;font-size:32px">📜</div>`;
+
+  const views = s.views ? formatNum(s.views) + ' views' : '';
+  div.innerHTML = `
+    ${img}
+    <div class="script-name" title="${escHtml(s.title)}">${escHtml(s.title)}</div>
+    <div class="script-game" title="${escHtml(s.game?.name || '—')}">${escHtml(s.game?.name || '—')}</div>
+    <div class="script-meta">
+      <span class="script-views">${views}</span>
+      <button class="script-btn" onclick="openModal(${JSON.stringify(s).replace(/"/g,'&quot;')})">VER SCRIPT</button>
+    </div>`;
+  return div;
+}
+
+function filterScripts(game, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = game;
+  currentSearch = '';
+  document.getElementById('scriptSearch').value = '';
+  loadScripts(1, game, false);
+}
+
+let searchTimer;
+function searchScripts(val) {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    currentSearch = val;
+    currentFilter = '';
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.filter-btn').classList.add('active');
+    loadScripts(1, val, false);
+  }, 500);
+}
+
+function loadMoreScripts() {
+  loadScripts(currentPage + 1, currentSearch || currentFilter, true);
+}
+
+// ============================================================
+//  MODAL
+// ============================================================
+let modalScriptText = '';
+
+function openModal(s) {
+  document.getElementById('modalTitle').textContent  = s.title  || '—';
+  document.getElementById('modalGame').textContent   = s.game?.name || '—';
+  const script = s.script || s.rawScript || '-- script não disponível';
+  document.getElementById('modalScript').textContent = script;
+  modalScriptText = script;
+  document.getElementById('scriptModal').classList.add('open');
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('scriptModal'))
+    document.getElementById('scriptModal').classList.remove('open');
+}
+
+function copyModalScript() {
+  navigator.clipboard.writeText(modalScriptText).then(() => {
+    const btn = document.querySelector('#scriptModal .btn-primary');
+    btn.textContent = '✅ Copiado!';
+    setTimeout(() => btn.textContent = 'Copiar Script', 2000);
+  }).catch(() => {});
+}
+
+// ============================================================
+//  HELPERS
+// ============================================================
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function formatNum(n) {
+  if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000)    return (n/1000).toFixed(1) + 'K';
+  return String(n);
+}
+</script>
+
+</body>
+</html>
