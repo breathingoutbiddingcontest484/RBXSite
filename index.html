@@ -265,24 +265,76 @@ async function checkStatus() {
   const keySt    = document.getElementById('feat-key-status');
   const lastUpd  = document.getElementById('feat-last-update');
 
-  try {
-    const r    = await fetch('https://rbxadminkey.netlify.app/api/validate?key=DEVK_REDUXSTUDIOS1%23', { signal: AbortSignal.timeout(5000) });
-    const data = await r.json();
-    const online = data && (data.valid !== undefined);
+  const CONFIG_URL = 'https://raw.githubusercontent.com/breathingoutbiddingcontest484/RBXSite/refs/heads/main/config.json';
 
-    if (online) {
-      pill.classList.remove('offline');
-      dot.style.background = '#00ff88';
-      dot.style.boxShadow  = '0 0 8px #00ff88';
-      txt.textContent = 'Sistema Online';
-      if (execSt) { execSt.textContent = 'ONLINE'; execSt.className = 'status-value green'; }
-      if (keySt)  { keySt.textContent  = 'ONLINE'; keySt.className  = 'status-value green'; }
+  // Mapeia status para cor/label
+  function applyStatus(element, status) {
+    if (!element) return;
+    const s = (status || '').toLowerCase();
+    if (s === 'online') {
+      element.textContent = 'ONLINE';
+      element.className = 'status-value green';
+    } else if (s === 'down') {
+      element.textContent = 'DOWN';
+      element.className = 'status-value red';
+    } else if (s === 'update') {
+      element.textContent = 'UPDATE';
+      element.className = 'status-value' ;
+      element.style.color = '#ffcc00';
+    } else if (s === 'issue') {
+      element.textContent = 'ISSUE';
+      element.className = 'status-value';
+      element.style.color = '#ff8800';
     } else {
-      throw new Error('offline');
+      element.textContent = status.toUpperCase();
+      element.className = 'status-value';
     }
+  }
+
+  try {
+    const r    = await fetch(CONFIG_URL + '?t=' + Date.now(), { signal: AbortSignal.timeout(5000) });
+    const cfg  = await r.json();
+
+    // status0 = Executor, status1 = KeySystem (status2/3 reservados)
+    const execStatus = cfg.status0 || 'Online';
+    const keyStatus  = cfg.status1 || 'Online';
+
+    // Determina status geral da pill pelo pior status
+    const allStatuses = [execStatus, keyStatus].map(s => s.toLowerCase());
+    const isDown   = allStatuses.includes('down');
+    const isIssue  = allStatuses.includes('issue');
+    const isUpdate = allStatuses.includes('update');
+
+    if (isDown) {
+      pill.classList.add('offline');
+      dot.style.background  = '#ff4444';
+      dot.style.boxShadow   = '0 0 8px #ff4444';
+      dot.style.animation   = 'none';
+      txt.textContent = 'Sistema Offline';
+    } else if (isIssue) {
+      pill.classList.remove('offline');
+      dot.style.background  = '#ff8800';
+      dot.style.boxShadow   = '0 0 8px #ff8800';
+      txt.textContent = 'Instabilidade';
+    } else if (isUpdate) {
+      pill.classList.remove('offline');
+      dot.style.background  = '#ffcc00';
+      dot.style.boxShadow   = '0 0 8px #ffcc00';
+      txt.textContent = 'Em Atualização';
+    } else {
+      pill.classList.remove('offline');
+      dot.style.background  = '#00ff88';
+      dot.style.boxShadow   = '0 0 8px #00ff88';
+      txt.textContent = 'Sistema Online';
+    }
+
+    applyStatus(execSt, execStatus);
+    applyStatus(keySt,  keyStatus);
+
   } catch {
     pill.classList.add('offline');
     dot.style.animation = 'none';
+    dot.style.background = '#ff4444';
     txt.textContent = 'Sistema Offline';
     if (execSt) { execSt.textContent = 'OFFLINE'; execSt.className = 'status-value red'; }
     if (keySt)  { keySt.textContent  = 'OFFLINE'; keySt.className  = 'status-value red'; }
