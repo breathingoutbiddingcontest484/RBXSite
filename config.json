@@ -1,0 +1,7 @@
+{
+    "exemple": "Update,Online,Down,Issue",
+    "status0": "Issue",
+    "status1": "Online",
+    "status2": "Down",
+    "status3": "Update"
+}
