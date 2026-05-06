@@ -296,7 +296,7 @@ async function checkStatus() {
     const cfg  = await r.json();
 
     // status0 = Executor, status1 = KeySystem (status2/3 reservados)
-    const execStatus = cfg.status0 || 'Online';
+    const execStatus = cfg.status3 || 'Online';
     const keyStatus  = cfg.status1 || 'Online';
 
     // Determina status geral da pill pelo pior status
