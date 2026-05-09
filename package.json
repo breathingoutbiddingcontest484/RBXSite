@@ -1,0 +1,21 @@
+{
+  "name": "rbxsite2",
+  "version": "1.0.0",
+  "description": "Site RBXSite2 - projeto estático HTML/CSS",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "api": "node api.js"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "static",
+    "site"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "serve": "^14.2.6"
+  }
+}
