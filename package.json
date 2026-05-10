@@ -2,9 +2,9 @@
   "name": "rbxsite",
   "version": "1.0.0",
   "description": "RBX Exploit — Site estático servido via Express",
-  "main": "api.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node api.js"
+    "start": "node server.js"
   },
   "keywords": ["roblox", "executor", "rbx"],
   "author": "",
