@@ -23,6 +23,7 @@
 
   <nav class="nav-center" id="mainNav">
     <a href="#" class="active" onclick="showSection('lobby');return false">Lobby</a>
+    <a href="#" onclick="showSection('preview');return false">Preview</a>
     <a href="#" onclick="showSection('features');return false">Features</a>
     <a href="#" onclick="showSection('scripts');return false">Scripts</a>
     <a href="#" onclick="showSection('changelog');return false">Changelog</a>
@@ -63,6 +64,65 @@
       </div>
     </div>
   </section>
+
+  <!-- ============ PREVIEW ============ -->
+  <section id="section-preview" style="display:none">
+    <div class="section">
+      <div class="section-title">Preview</div>
+      <div class="section-sub">// Veja o RBX Exploit em ação</div>
+
+      <div class="preview-grid">
+        <div class="preview-card glass-card" onclick="openPreview('assets/pcv1.png','Redux Windows v0.2.5')">
+          <div class="preview-img-wrap">
+            <img src="assets/pcv1.png" alt="Redux Windows v0.2.5" class="preview-img" />
+            <div class="preview-overlay">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="preview-label">Redux Windows v0.2.5</div>
+          <div class="preview-sub">Interface clássica do executor</div>
+        </div>
+
+        <div class="preview-card glass-card" onclick="openPreview('assets/pcv2.png','Redux UI Beta')">
+          <div class="preview-img-wrap">
+            <img src="assets/pcv2.png" alt="Redux UI Beta" class="preview-img" />
+            <div class="preview-overlay">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="preview-label">Redux UI Beta</div>
+          <div class="preview-sub">Nova interface com Editor Tab</div>
+        </div>
+
+        <div class="preview-card glass-card" onclick="openPreview('assets/pcv3.png','Redux v3.0.2')">
+          <div class="preview-img-wrap">
+            <img src="assets/pcv3.png" alt="Redux v3.0.2" class="preview-img" />
+            <div class="preview-overlay">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="preview-label">Redux v3.0.2</div>
+          <div class="preview-sub">Versão mais recente com Free Key</div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:48px">
+        <a href="checkpoint1.html" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Pegar Key Grátis
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preview Lightbox -->
+  <div class="preview-lightbox" id="previewLightbox" onclick="closeLightbox()">
+    <div class="lightbox-inner" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <img src="" alt="" class="lightbox-img" id="lightboxImg" />
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
 
   <!-- ============ FEATURES ============ -->
   <section id="section-features" style="display:none">
@@ -113,7 +173,6 @@
         </div>
       </div>
 
-      <!-- Status do sistema -->
       <div style="margin-top: 60px">
         <div class="section-title" style="font-size:1.1rem">Status do Sistema</div>
         <div class="section-sub">// Monitoramento em tempo real</div>
@@ -167,34 +226,65 @@
           Carregando scripts...
         </div>
       </div>
-      <div style="text-align:center;margin-top:24px">
-        <button class="btn btn-outline" id="loadMoreBtn" onclick="loadMoreScripts()" style="display:none">Carregar mais</button>
+      <div style="text-align:center;margin-top:28px">
+        <button id="loadMoreBtn" class="btn btn-outline" style="display:none" onclick="loadMoreScripts()">Carregar Mais</button>
       </div>
     </div>
   </section>
 
+  <!-- Script Modal -->
+  <div class="modal-overlay" id="scriptModal" onclick="closeModal(event)">
+    <div class="glass-card modal">
+      <div class="modal-title" id="modalTitle">—</div>
+      <div class="modal-game" id="modalGame">—</div>
+      <div class="modal-script-box"><pre id="modalScript" style="white-space:pre-wrap;word-break:break-all;font-family:var(--font-mono);font-size:11px;color:var(--neon)"></pre></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="copyModalScript()">Copiar Script</button>
+        <button class="modal-close" onclick="document.getElementById('scriptModal').classList.remove('open')">Fechar</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ============ CHANGELOG ============ -->
   <section id="section-changelog" style="display:none">
-    <div class="section" style="max-width:760px">
+    <div class="section">
       <div class="section-title">Changelog</div>
-      <div class="section-sub">// Histórico de atualizações do RBX Exploit</div>
-
+      <div class="section-sub">// Histórico de atualizações</div>
       <div class="changelog-list">
         <div class="glass-card changelog-item">
-          <div class="changelog-version">v2.0.1</div>
+          <div class="changelog-version">v3.0.2</div>
           <div class="changelog-content">
-            <div class="changelog-date">03 MAI 2025</div>
-            <div class="changelog-title">LATEST UPDATE</div>
+            <div class="changelog-date">2025-05-01</div>
+            <div class="changelog-title">STABILITY UPDATE</div>
             <ul class="changelog-changes">
-              <li>Atualização de compatibilidade com a versão mais recente do Roblox <span class="changelog-tag tag-update">UPDATE</span></li>
-              <li>Correção de idioma (Language) <span class="changelog-tag tag-fix">FIX</span></li>
-              <li>Correção de versão (Version) <span class="changelog-tag tag-fix">FIX</span></li>
-              <li>Sistema de Key + Login adicionado <span class="changelog-tag tag-new">NEW</span></li>
-              <li>Sistema de Amigos + Chat adicionado <span class="changelog-tag tag-new">NEW</span></li>
-              <li>Profiler adicionado <span class="changelog-tag tag-new">NEW</span></li>
-              <li>Correção do getscript — getscriptclosure ainda tem erro, fix em breve <span class="changelog-tag tag-fix">FIX</span></li>
-              <li>Logs de update removidos do executor <span class="changelog-tag tag-fix">FIX</span></li>
-              <li>Auto Save de Settings adicionado — erro no save sendo corrigido em breve <span class="changelog-tag tag-new">NEW</span></li>
+              <li>Suporte à versão mais recente do Roblox <span class="changelog-tag tag-new">NEW</span></li>
+              <li>Sistema de Free Key reformulado <span class="changelog-tag tag-update">UPDATE</span></li>
+              <li>UI redesenhada com sidebar moderna <span class="changelog-tag tag-new">NEW</span></li>
+              <li>Correções de crashes no inject <span class="changelog-tag tag-fix">FIX</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="glass-card changelog-item">
+          <div class="changelog-version">v0.2.5 Beta</div>
+          <div class="changelog-content">
+            <div class="changelog-date">2025-03-14</div>
+            <div class="changelog-title">BETA UI RELEASE</div>
+            <ul class="changelog-changes">
+              <li>Nova Beta UI com Editor Tab <span class="changelog-tag tag-new">NEW</span></li>
+              <li>ScriptHub integrado <span class="changelog-tag tag-new">NEW</span></li>
+              <li>Melhorias de performance na injeção <span class="changelog-tag tag-update">UPDATE</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="glass-card changelog-item">
+          <div class="changelog-version">v0.2.5</div>
+          <div class="changelog-content">
+            <div class="changelog-date">2025-02-20</div>
+            <div class="changelog-title">WINDOWS RELEASE</div>
+            <ul class="changelog-changes">
+              <li>Primeira versão pública do Redux Windows <span class="changelog-tag tag-new">NEW</span></li>
+              <li>Console integrado <span class="changelog-tag tag-new">NEW</span></li>
+              <li>AutoExec, Workspace e Scripts folders <span class="changelog-tag tag-new">NEW</span></li>
             </ul>
           </div>
         </div>
@@ -204,132 +294,210 @@
 
 </main>
 
-<!-- ============ SCRIPT MODAL ============ -->
-<div class="modal-overlay" id="scriptModal" onclick="closeModal(event)">
-  <div class="glass-card modal">
-    <div class="modal-title" id="modalTitle">—</div>
-    <div class="modal-game" id="modalGame">—</div>
-    <div class="modal-script-box" id="modalScript">—</div>
-    <div class="modal-actions">
-      <button class="btn btn-primary" onclick="copyModalScript()" style="padding:8px 20px;font-size:13px">Copiar Script</button>
-      <button class="modal-close" onclick="document.getElementById('scriptModal').classList.remove('open')">Fechar</button>
-    </div>
-  </div>
-</div>
+<style>
+/* ---- Preview Grid ---- */
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+.preview-card {
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+.preview-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-bright);
+  box-shadow: 0 12px 40px rgba(196,0,255,0.18);
+}
+.preview-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.preview-img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+.preview-card:hover .preview-img { transform: scale(1.04); }
+.preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(196,0,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+  color: #fff;
+}
+.preview-card:hover .preview-overlay { opacity: 1; }
+.preview-label {
+  font-family: var(--font-head);
+  font-size: 11px;
+  color: var(--neon);
+  letter-spacing: 1.5px;
+  padding: 14px 18px 4px;
+}
+.preview-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+  padding: 0 18px 16px;
+}
+
+/* ---- Lightbox ---- */
+.preview-lightbox {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(6,0,14,0.92);
+  backdrop-filter: blur(16px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s;
+}
+.preview-lightbox.open { opacity: 1; pointer-events: all; }
+.lightbox-inner {
+  position: relative;
+  max-width: 860px; width: 100%;
+  animation: zoomIn 0.25s ease both;
+}
+.lightbox-close {
+  position: absolute;
+  top: -14px; right: -14px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--neon);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--neon-glow-s);
+  transition: transform 0.2s;
+  z-index: 1;
+}
+.lightbox-close:hover { transform: scale(1.1); }
+.lightbox-img {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border-bright);
+  box-shadow: 0 0 60px rgba(196,0,255,0.25);
+  display: block;
+}
+.lightbox-caption {
+  text-align: center;
+  margin-top: 14px;
+  font-family: var(--font-head);
+  font-size: 12px;
+  color: var(--neon);
+  letter-spacing: 2px;
+}
+</style>
 
 <script>
-// ============================================================
-//  STARS
-// ============================================================
+// ---- Stars ----
 (function() {
-  const c = document.getElementById('stars');
-  for (let i = 0; i < 80; i++) {
-    const s = document.createElement('div');
-    s.className = 'star' + (Math.random() > 0.8 ? ' big' : '');
-    s.style.left  = Math.random() * 100 + 'vw';
-    s.style.top   = Math.random() * 100 + 'vh';
-    s.style.setProperty('--dur',   (3 + Math.random() * 6) + 's');
-    s.style.setProperty('--delay', (Math.random() * 8) + 's');
+  var c = document.getElementById('stars');
+  for (var i = 0; i < 80; i++) {
+    var s = document.createElement('div');
+    s.className = 'star' + (Math.random() > 0.85 ? ' big' : '');
+    s.style.left  = Math.random()*100 + 'vw';
+    s.style.top   = Math.random()*100 + 'vh';
+    s.style.setProperty('--dur',   (3 + Math.random()*5) + 's');
+    s.style.setProperty('--delay', (Math.random()*6) + 's');
     c.appendChild(s);
   }
 })();
 
-// ============================================================
-//  NAV
-// ============================================================
-const SECTIONS = ['lobby','features','scripts','changelog'];
+// ---- Navigation ----
+function showSection(id) {
+  document.querySelectorAll('main > section').forEach(s => s.style.display = 'none');
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  var el = document.getElementById('section-' + id);
+  if (el) el.style.display = 'block';
 
-function showSection(name) {
-  SECTIONS.forEach(s => {
-    const el = document.getElementById('section-' + s);
-    if (el) el.style.display = s === name ? 'block' : 'none';
-  });
-  document.querySelectorAll('#mainNav a').forEach(a => {
-    a.classList.remove('active');
-    if (a.getAttribute('onclick') && a.getAttribute('onclick').includes("'" + name + "'"))
+  var links = document.querySelectorAll('#mainNav a');
+  links.forEach(a => {
+    if (a.getAttribute('onclick') && a.getAttribute('onclick').includes("'" + id + "'"))
       a.classList.add('active');
   });
-  if (name === 'scripts' && !scriptsLoaded) loadScripts();
-  if (name === 'features') checkStatus();
-  window.scrollTo(0, 0);
+
+  if (id === 'scripts' && !scriptsLoaded) loadScripts(1, '', false);
 }
 
-// ============================================================
-//  STATUS CHECK
-// ============================================================
+// ---- Preview Lightbox ----
+function openPreview(src, caption) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightboxCaption').textContent = caption;
+  document.getElementById('previewLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('previewLightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+
+// ---- Status Check ----
 async function checkStatus() {
-  const pill     = document.getElementById('statusPill');
-  const dot      = document.getElementById('statusDot');
-  const txt      = document.getElementById('statusText');
-  const execSt   = document.getElementById('feat-exec-status');
-  const keySt    = document.getElementById('feat-key-status');
-  const lastUpd  = document.getElementById('feat-last-update');
+  var pill     = document.getElementById('statusPill');
+  var dot      = document.getElementById('statusDot');
+  var txt      = document.getElementById('statusText');
+  var execSt   = document.getElementById('feat-exec-status');
+  var keySt    = document.getElementById('feat-key-status');
+  var lastUpd  = document.getElementById('feat-last-update');
 
-  const CONFIG_URL = 'https://raw.githubusercontent.com/breathingoutbiddingcontest484/RBXSite/refs/heads/main/config.json';
-
-  // Mapeia status para cor/label
-  function applyStatus(element, status) {
-    if (!element) return;
-    const s = (status || '').toLowerCase();
-    if (s === 'online') {
-      element.textContent = 'ONLINE';
-      element.className = 'status-value green';
-    } else if (s === 'down') {
-      element.textContent = 'DOWN';
-      element.className = 'status-value red';
-    } else if (s === 'update') {
-      element.textContent = 'UPDATE';
-      element.className = 'status-value' ;
-      element.style.color = '#ffcc00';
-    } else if (s === 'issue') {
-      element.textContent = 'ISSUE';
-      element.className = 'status-value';
-      element.style.color = '#ff8800';
-    } else {
-      element.textContent = status.toUpperCase();
-      element.className = 'status-value';
-    }
+  function applyStatus(el, st) {
+    if (!el) return;
+    var map = {
+      'Online':  ['ONLINE',  'green'],
+      'Down':    ['OFFLINE', 'red'],
+      'Issue':   ['ISSUE',   'yellow'],
+      'Update':  ['UPDATE',  'yellow'],
+    };
+    var v = map[st] || ['UNKNOWN', ''];
+    el.textContent  = v[0];
+    el.className    = 'status-value ' + v[1];
   }
 
   try {
-    const r    = await fetch(CONFIG_URL + '?t=' + Date.now(), { signal: AbortSignal.timeout(5000) });
-    const cfg  = await r.json();
+    var res  = await fetch('config.json?t=' + Date.now());
+    var data = await res.json();
 
-    // status0 = Executor, status1 = KeySystem (status2/3 reservados)
-    const execStatus = cfg.status3 || 'Online';
-    const keyStatus  = cfg.status1 || 'Online';
+    var execStat = data['status0'] || 'Online';
+    var keyStat  = data['status1'] || 'Online';
+    var isOffline = (execStat === 'Down' || keyStat === 'Down');
+    var isIssue   = (execStat === 'Issue' || keyStat === 'Issue');
+    var isUpdate  = (execStat === 'Update' || keyStat === 'Update');
 
-    // Determina status geral da pill pelo pior status
-    const allStatuses = [execStatus, keyStatus].map(s => s.toLowerCase());
-    const isDown   = allStatuses.includes('down');
-    const isIssue  = allStatuses.includes('issue');
-    const isUpdate = allStatuses.includes('update');
-
-    if (isDown) {
+    if (isOffline) {
       pill.classList.add('offline');
-      dot.style.background  = '#ff4444';
-      dot.style.boxShadow   = '0 0 8px #ff4444';
-      dot.style.animation   = 'none';
+      dot.style.background = '#ff4444';
+      dot.style.boxShadow  = '0 0 8px #ff4444';
+      dot.style.animation  = 'none';
       txt.textContent = 'Sistema Offline';
-    } else if (isIssue) {
+    } else if (isIssue || isUpdate) {
       pill.classList.remove('offline');
-      dot.style.background  = '#ff8800';
-      dot.style.boxShadow   = '0 0 8px #ff8800';
-      txt.textContent = 'Instabilidade';
-    } else if (isUpdate) {
-      pill.classList.remove('offline');
-      dot.style.background  = '#ffcc00';
-      dot.style.boxShadow   = '0 0 8px #ffcc00';
-      txt.textContent = 'Em Atualização';
+      dot.style.background = '#ffcc00';
+      dot.style.boxShadow  = '0 0 8px #ffcc00';
+      txt.textContent = isUpdate ? 'Em Atualização' : 'Instabilidade';
     } else {
       pill.classList.remove('offline');
-      dot.style.background  = '#00ff88';
-      dot.style.boxShadow   = '0 0 8px #00ff88';
+      dot.style.background = '#00ff88';
+      dot.style.boxShadow  = '0 0 8px #00ff88';
       txt.textContent = 'Sistema Online';
     }
 
-    applyStatus(execSt, execStatus);
-    applyStatus(keySt,  keyStatus);
+    applyStatus(execSt, execStat);
+    applyStatus(keySt,  keyStat);
 
   } catch {
     pill.classList.add('offline');
@@ -343,134 +511,98 @@ async function checkStatus() {
   if (lastUpd) lastUpd.textContent = new Date().toLocaleDateString('pt-BR');
 }
 
-checkStatus(); // check on load for hero pill
+checkStatus();
 
-// ============================================================
-//  SCRIPT HUB — ScriptBlox API
-// ============================================================
-let scriptsLoaded  = false;
-let allScripts     = [];
-let currentPage    = 1;
-let currentSearch  = '';
-let currentFilter  = '';
-const PAGE_SIZE    = 12;
+// ---- Script Hub ----
+let scriptsLoaded = false, allScripts = [], currentPage = 1;
+let currentSearch = '', currentFilter = '';
+const PAGE_SIZE = 12;
 
 async function loadScripts(page = 1, search = '', append = false) {
-  const grid = document.getElementById('scriptsGrid');
-  const moreBtn = document.getElementById('loadMoreBtn');
-
+  var grid    = document.getElementById('scriptsGrid');
+  var moreBtn = document.getElementById('loadMoreBtn');
   if (!append) {
     grid.innerHTML = '<div class="scripts-loading"><div class="spinner"></div>Carregando scripts...</div>';
     moreBtn.style.display = 'none';
   }
-
   try {
-    const q    = search || currentFilter || 'roblox';
-    const url  = `https://scriptblox.com/api/script/search?q=${encodeURIComponent(q)}&page=${page}&max=${PAGE_SIZE}`;
-    const res  = await fetch(url, { signal: AbortSignal.timeout(8000) });
-    const data = await res.json();
-    const scripts = data?.result?.scripts || [];
-
-    if (!append) {
-      allScripts = scripts;
-      grid.innerHTML = '';
-    } else {
-      allScripts = [...allScripts, ...scripts];
-    }
-
-    if (allScripts.length === 0) {
-      grid.innerHTML = '<div class="scripts-loading">Nenhum script encontrado.</div>';
-      return;
-    }
-
+    var q   = search || currentFilter || 'roblox';
+    var url = 'https://scriptblox.com/api/script/search?q=' + encodeURIComponent(q) + '&page=' + page + '&max=' + PAGE_SIZE;
+    var res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+    var data = await res.json();
+    var scripts = (data && data.result && data.result.scripts) || [];
+    if (!append) { allScripts = scripts; grid.innerHTML = ''; }
+    else { allScripts = [...allScripts, ...scripts]; }
+    if (allScripts.length === 0) { grid.innerHTML = '<div class="scripts-loading">Nenhum script encontrado.</div>'; return; }
     if (!append) grid.innerHTML = '';
     scripts.forEach(s => grid.appendChild(buildScriptCard(s)));
-
-    const total  = data?.result?.totalPages || 1;
+    var total = (data && data.result && data.result.totalPages) || 1;
     moreBtn.style.display = page < total ? 'inline-flex' : 'none';
-    currentPage   = page;
-    scriptsLoaded = true;
-
-  } catch (e) {
+    currentPage = page; scriptsLoaded = true;
+  } catch(e) {
     if (!append) grid.innerHTML = '<div class="scripts-loading">❌ Erro ao carregar scripts.<br><small>Verifique sua conexão.</small></div>';
   }
 }
 
 function buildScriptCard(s) {
-  const div = document.createElement('div');
+  var div = document.createElement('div');
   div.className = 'glass-card script-card';
-
-  const img = s.image
-    ? `<img class="script-thumb" src="https://scriptblox.com${s.image}" alt="${s.title}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height%22100%22><rect fill=%22%23120020%22 width=%22100%22 height=%22100%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%23c400ff44%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2232%22>📜</text></svg>'"/>`
-    : `<div class="script-thumb" style="display:flex;align-items:center;justify-content:center;font-size:32px">📜</div>`;
-
-  const views = s.views ? formatNum(s.views) + ' views' : '';
-  div.innerHTML = `
-    ${img}
-    <div class="script-name" title="${escHtml(s.title)}">${escHtml(s.title)}</div>
-    <div class="script-game" title="${escHtml(s.game?.name || '—')}">${escHtml(s.game?.name || '—')}</div>
-    <div class="script-meta">
-      <span class="script-views">${views}</span>
-      <button class="script-btn" onclick="openModal(${JSON.stringify(s).replace(/"/g,'&quot;')})">VER SCRIPT</button>
-    </div>`;
+  var img = s.image
+    ? '<img class="script-thumb" src="https://scriptblox.com' + s.image + '" alt="' + escHtml(s.title) + '" onerror="this.src=\'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23120020%22 width=%22100%22 height=%22100%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%23c400ff44%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2232%22>📜</text></svg>\'" />'
+    : '<div class="script-thumb" style="display:flex;align-items:center;justify-content:center;font-size:32px">📜</div>';
+  var views = s.views ? formatNum(s.views) + ' views' : '';
+  div.innerHTML = img
+    + '<div class="script-name" title="' + escHtml(s.title) + '">' + escHtml(s.title) + '</div>'
+    + '<div class="script-game" title="' + escHtml((s.game && s.game.name) || '—') + '">' + escHtml((s.game && s.game.name) || '—') + '</div>'
+    + '<div class="script-meta"><span class="script-views">' + views + '</span>'
+    + '<button class="script-btn" onclick="openModal(' + JSON.stringify(s).replace(/"/g,'&quot;') + ')">VER SCRIPT</button></div>';
   return div;
 }
 
 function filterScripts(game, btn) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  currentFilter = game;
-  currentSearch = '';
+  currentFilter = game; currentSearch = '';
   document.getElementById('scriptSearch').value = '';
   loadScripts(1, game, false);
 }
 
-let searchTimer;
+var searchTimer;
 function searchScripts(val) {
   clearTimeout(searchTimer);
-  searchTimer = setTimeout(() => {
-    currentSearch = val;
-    currentFilter = '';
+  searchTimer = setTimeout(function() {
+    currentSearch = val; currentFilter = '';
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     document.querySelector('.filter-btn').classList.add('active');
     loadScripts(1, val, false);
   }, 500);
 }
 
-function loadMoreScripts() {
-  loadScripts(currentPage + 1, currentSearch || currentFilter, true);
-}
+function loadMoreScripts() { loadScripts(currentPage + 1, currentSearch || currentFilter, true); }
 
-// ============================================================
-//  MODAL
-// ============================================================
-let modalScriptText = '';
-
+// ---- Modal ----
+var modalScriptText = '';
 function openModal(s) {
-  document.getElementById('modalTitle').textContent  = s.title  || '—';
-  document.getElementById('modalGame').textContent   = s.game?.name || '—';
-  const script = s.script || s.rawScript || '-- script não disponível';
+  document.getElementById('modalTitle').textContent  = s.title || '—';
+  document.getElementById('modalGame').textContent   = (s.game && s.game.name) || '—';
+  var script = s.script || s.rawScript || '-- script não disponível';
   document.getElementById('modalScript').textContent = script;
   modalScriptText = script;
   document.getElementById('scriptModal').classList.add('open');
 }
-
 function closeModal(e) {
   if (e.target === document.getElementById('scriptModal'))
     document.getElementById('scriptModal').classList.remove('open');
 }
-
 function copyModalScript() {
-  navigator.clipboard.writeText(modalScriptText).then(() => {
-    const btn = document.querySelector('#scriptModal .btn-primary');
+  navigator.clipboard.writeText(modalScriptText).then(function() {
+    var btn = document.querySelector('#scriptModal .btn-primary');
     btn.textContent = '✅ Copiado!';
-    setTimeout(() => btn.textContent = 'Copiar Script', 2000);
-  }).catch(() => {});
+    setTimeout(function() { btn.textContent = 'Copiar Script'; }, 2000);
+  }).catch(function(){});
 }
 
-// ============================================================
-//  HELPERS
-// ============================================================
+// ---- Helpers ----
 function escHtml(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }

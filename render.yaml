@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: rbxsite
+    env: node
+    buildCommand: npm install
+    startCommand: node api.js
+    envVars:
+      - key: PORT
+        value: 3000

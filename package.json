@@ -1,21 +1,15 @@
 {
-  "name": "rbxsite2",
+  "name": "rbxsite",
   "version": "1.0.0",
-  "description": "Site RBXSite2 - projeto estático HTML/CSS",
-  "main": "index.html",
+  "description": "RBX Exploit — Site estático servido via Express",
+  "main": "api.js",
   "scripts": {
-    "start": "serve .",
-    "api": "node api.js"
+    "start": "node api.js"
   },
-  "keywords": [
-    "html",
-    "css",
-    "static",
-    "site"
-  ],
+  "keywords": ["roblox", "executor", "rbx"],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "serve": "^14.2.6"
+    "express": "^4.18.2"
   }
 }
