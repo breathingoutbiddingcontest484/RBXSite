@@ -118,13 +118,6 @@ async function generateKey() {
     void keyValue.offsetWidth;
     keyValue.classList.add('key-appear');
 
-    keyArea.style.display = 'block';
-    genBtn.disabled = false;
-    genBtn.textContent = 'Gerar Nova Key';
-    feedback.style.color = '#c400ff';
-    feedback.textContent = '✅ Key gerada e registrada no servidor!';
-    setTimeout(function() { feedback.textContent = ''; }, 3000);
-
   } catch (err) {
     feedback.style.color = '#ff5555';
     feedback.textContent = '❌ Erro de rede. Verifique sua conexão.';
