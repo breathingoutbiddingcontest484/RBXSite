@@ -114,6 +114,8 @@ async function generateKey() {
 
     var key = data.key;
     keyValue.textContent = key;
+    keyArea.style.display = 'block';
+    genBtn.style.display = 'none';
     keyValue.classList.remove('key-appear');
     void keyValue.offsetWidth;
     keyValue.classList.add('key-appear');
