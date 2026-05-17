@@ -74,37 +74,15 @@
       <div class="preview-grid">
         <div class="preview-card glass-card" onclick="openPreview('assets/pcv1.png','Redux Windows v0.2.5')">
           <div class="preview-img-wrap">
-            <img src="assets/pcv1.png" alt="Redux Windows v0.2.5" class="preview-img" />
+            <img src="assets/RBX.png" alt="RBX Exploit v2.1.1" class="preview-img" />
             <div class="preview-overlay">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
             </div>
           </div>
-          <div class="preview-label">Redux Windows v0.2.5</div>
+          <div class="preview-label">RBX Exploit v2.1.1</div>
           <div class="preview-sub">Interface clássica do executor</div>
         </div>
 
-        <div class="preview-card glass-card" onclick="openPreview('assets/pcv2.png','Redux UI Beta')">
-          <div class="preview-img-wrap">
-            <img src="assets/pcv2.png" alt="Redux UI Beta" class="preview-img" />
-            <div class="preview-overlay">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-            </div>
-          </div>
-          <div class="preview-label">Redux UI Beta</div>
-          <div class="preview-sub">Nova interface com Editor Tab</div>
-        </div>
-
-        <div class="preview-card glass-card" onclick="openPreview('assets/pcv3.png','Redux v3.0.2')">
-          <div class="preview-img-wrap">
-            <img src="assets/pcv3.png" alt="Redux v3.0.2" class="preview-img" />
-            <div class="preview-overlay">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-            </div>
-          </div>
-          <div class="preview-label">Redux v3.0.2</div>
-          <div class="preview-sub">Versão mais recente com Free Key</div>
-        </div>
-      </div>
 
       <div style="text-align:center;margin-top:48px">
         <a href="checkpoint1.html" class="btn btn-primary">
@@ -252,7 +230,7 @@
       <div class="section-sub">// Histórico de atualizações</div>
       <div class="changelog-list">
         <div class="glass-card changelog-item">
-          <div class="changelog-version">v3.0.2</div>
+          <div class="changelog-version">v2.1.1</div>
           <div class="changelog-content">
             <div class="changelog-date">2025-05-01</div>
             <div class="changelog-title">STABILITY UPDATE</div>
@@ -472,7 +450,7 @@ async function checkStatus() {
     var res  = await fetch('config.json?t=' + Date.now());
     var data = await res.json();
 
-    var execStat = data['status1'] || 'Online';
+    var execStat = data['status0'] || 'Online';
     var keyStat  = data['status1'] || 'Online';
     var isOffline = (execStat === 'Down' || keyStat === 'Down');
     var isIssue   = (execStat === 'Issue' || keyStat === 'Issue');
