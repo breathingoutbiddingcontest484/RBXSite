@@ -450,7 +450,7 @@ async function checkStatus() {
     var res  = await fetch('config.json?t=' + Date.now());
     var data = await res.json();
 
-    var execStat = data['status0'] || 'Online';
+    var execStat = data['status1'] || 'Online';
     var keyStat  = data['status1'] || 'Online';
     var isOffline = (execStat === 'Down' || keyStat === 'Down');
     var isIssue   = (execStat === 'Issue' || keyStat === 'Issue');
