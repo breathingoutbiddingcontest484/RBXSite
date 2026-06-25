@@ -82,6 +82,18 @@ var interval = setInterval(function() {
     document.getElementById('timer-text').textContent = '✅ Clique no botão para continuar';
   }
 }, 1000);
+
+function enableNext() {
+  setTimeout(function() {
+    var btn = document.getElementById('shortener-btn');
+    btn.href = 'keyreward.html';
+    btn.removeAttribute('target');
+    btn.onclick = null;
+    btn.textContent = '→ Obter minha Key';
+    document.getElementById('lock-note').textContent = '✅ Clique acima para gerar sua key!';
+    document.getElementById('timer-text').textContent = '';
+  }, 500);
+}
 </script>
 
 </body>
